@@ -5,6 +5,7 @@ import {
 } from "../controllers/auth/authControllers.js";
 import Joi from "joi";
 import { createValidator } from "express-joi-validation";
+import { verifyToken } from "../middlewares/authMiddleware.js";
 
 const validator = createValidator();
 const router = express.Router();
@@ -22,5 +23,8 @@ const loginSchema = Joi.object({
 
 router.post("/register", validator.body(registerSchema), registerController);
 router.post("/login", validator.body(loginSchema), loginController);
+router.get("/test", verifyToken, (req, res) => {
+  res.send("request Passed");
+});
 
 export default router;

@@ -25,7 +25,16 @@ export const registerController = async (req, res) => {
     }).save();
 
     ///create the JWT token
-    const token = "JWT Token";
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        mail,
+      },
+      process.env.TOKEN_KEY,
+      {
+        expiresIn: "72h",
+      }
+    );
 
     res.status(201).send({
       success: true,
@@ -55,7 +64,17 @@ export const loginController = async (req, res) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
       ///send New Toekb
-      const token = "JWT_Token";
+      const token = jwt.sign(
+        {
+          userId: user._id,
+          mail,
+        },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: "72h",
+        }
+      );
+
       return res.status(200).send({
         success: true,
         message: "Login Successfully",

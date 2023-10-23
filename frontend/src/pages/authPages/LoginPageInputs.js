@@ -5,11 +5,18 @@ const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {
   return (
     <>
       <InputWithLabel
-        value
-        setValue
+        value={mail}
+        setValue={setMail}
         label="Email"
         type="text"
         placeholder="Enter Email address"
+      />
+      <InputWithLabel
+        value={password}
+        setValue={setPassword}
+        label="Password"
+        type="password"
+        placeholder="Enter password"
       />
     </>
   );

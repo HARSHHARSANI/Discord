@@ -7,6 +7,7 @@ const Wrapper = styled("div")({
   flexDirection: "column",
   width: "100%",
 });
+
 const Label = styled("p")({
   color: "#b9bbbe",
   textTransform: "uppercase",
@@ -26,11 +27,12 @@ const Input = styled("input")({
   padding: "0 5px",
 });
 
+
 const InputWithLabel = (props) => {
-  const { value, setvalue, label, type, placeholder } = props;
+  const { value, setValue, label, type, placeholder } = props;
 
   const handleValueChange = (event) => {
-    setvalue(event.target.value);
+    setValue(event.target.value);
   };
   return (
     <Wrapper>
